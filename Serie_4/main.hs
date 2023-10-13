@@ -1,4 +1,3 @@
-import Distribution.Simple.Program.HcPkg (list)
 fun2 :: (Num a, Enum a) => a -> [a -> (a, a, a)]
 fun2 n = [\a -> (a, b, a * b) | b <- [1 .. n]]
 
