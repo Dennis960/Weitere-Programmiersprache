@@ -6,7 +6,11 @@ module Serie5 where
     isMonotonous [] = True
     isMonotonous [_] = True
     isMonotonous list = isAscending list || isDescending list where
+        isAscending [] = True
+        isAscending [_] = True
         isAscending (x:xs) = x <= head xs && isAscending xs
+        isDescending [] = True
+        isDescending [_] = True
         isDescending (x:xs) = x >= head xs && isDescending xs
 
     -- Es wird davon ausgegangen, dass die Zahl Null kein Vorzeichen besitzt und somit nicht alternierend sein kann
