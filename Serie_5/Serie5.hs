@@ -3,8 +3,6 @@ module Serie5 where
     -- im Fall von strenger Monotonie müsste nur das "=" aus "<=" und ">=" in "isAscending" und "isDescending" entfernt werden
     monotoneFolge = [1,1,2,3,3,4,5,6,10,22]
     isMonotonous :: Ord a => [a] -> Bool
-    isMonotonous [] = True
-    isMonotonous [_] = True
     isMonotonous list = isAscending list || isDescending list where
         isAscending [] = True
         isAscending [_] = True
@@ -15,8 +13,6 @@ module Serie5 where
 
     alternierendeFolge = [-1,5,-2,20,-11,13,-11,13]
     isAlternating :: (Ord a, Num a) => [a] -> Bool
-    isAlternating [] = True
-    isAlternating [_] = True
     isAlternating list = isAlternatingPositive list || isAlternatingNegative list where
         isAlternatingPositive [] = True
         isAlternatingPositive [x] = x >= 0
