@@ -13,12 +13,17 @@ module Serie5 where
         isDescending [_] = True
         isDescending (x:xs) = x >= head xs && isDescending xs
 
-    -- Es wird davon ausgegangen, dass die Zahl Null kein Vorzeichen besitzt und somit nicht alternierend sein kann
     alternierendeFolge = [-1,5,-2,20,-11,13,-11,13]
     isAlternating :: (Ord a, Num a) => [a] -> Bool
     isAlternating [] = True
-    isAlternating [x] = x /= 0
-    isAlternating (x:xs) = x * head xs < 0 && isAlternating xs
+    isAlternating [_] = True
+    isAlternating list = isAlternatingPositive list || isAlternatingNegative list where
+        isAlternatingPositive [] = True
+        isAlternatingPositive [x] = x >= 0
+        isAlternatingPositive (x:xs) = x >= 0 && head xs <= 0 && isAlternatingNegative xs
+        isAlternatingNegative [] = True
+        isAlternatingNegative [x] = x <= 0
+        isAlternatingNegative (x:xs) = x <= 0 && head xs >= 0 && isAlternatingPositive xs
 
     konstanteFolge = [5,5,5,5,5,5,5,5]
     isConstant :: Eq a => [a] -> Bool
