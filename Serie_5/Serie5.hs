@@ -6,17 +6,15 @@ module Serie5 where
     isMonotonous [] = True
     isMonotonous [_] = True
     isMonotonous list = isAscending list || isDescending list where
-        isAscending [a,b] = a <= b
-        isAscending (a:list@(b:_)) = isAscending [a,b] && isAscending list
-        isDescending [a,b] = a >= b
-        isDescending (a:list@(b:_)) = isDescending [a,b] && isDescending list
+        isAscending (x:xs) = x <= head xs && isAscending xs
+        isDescending (x:xs) = x >= head xs && isDescending xs
 
     -- Es wird davon ausgegangen, dass die Zahl Null kein Vorzeichen besitzt und somit nicht alternierend sein kann
     alternierendeFolge = [-1,5,-2,20,-11,13,-11,13]
     isAlternating :: (Ord a, Num a) => [a] -> Bool
     isAlternating [] = True
-    isAlternating [a] = a /= 0
-    isAlternating (a:list@(b:_)) = a * b < 0 && isAlternating list
+    isAlternating [x] = x /= 0
+    isAlternating (x:xs) = x * head xs < 0 && isAlternating xs
 
     konstanteFolge = [5,5,5,5,5,5,5,5]
     isConstant :: Eq a => [a] -> Bool
